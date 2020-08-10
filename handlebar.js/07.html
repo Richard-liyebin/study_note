@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script id="tel" type="text/x-handlebars-template">
+         <div id="mydiv">
+             <p>姓名：{{information name}}</p>
+             <p>年龄：{{information age}}</p>
+             <p>身高：{{information height}}</p>
+             <p>体重：{{information weight}}</p>
+             <p>身体状况：{{information ifhealth}}</p>
+         </div>
+    </script>
+    <script>
+        let data = {
+            name: 'lyb'
+        }
+        Handlebars.registerHelper('information', function (name,age,height,weight,ifhealth,options) {
+             name = 'lyb'
+             age = '22'
+             height = 170
+             weight = 80
+             if(height>170&&weight<80){
+                 ifhealth = '健康'
+             }else{
+                 ifhealth = '亚健康'
+             }
+            return [name,age,height,weight]
+        })
+        //1.找到编译区域
+        let tel = $('#tel').html()
+        //2.编译当前区域
+        let template = Handlebars.compile(tel)
+        //3.找到需要编译的data数据
+        let mydata = template(data);
+        //4.把编译好的数据，注入页面元素中进行渲染
+        $('#app').html(mydata)
+    </script>
+</body>
+
+</html>

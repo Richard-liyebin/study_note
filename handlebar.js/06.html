@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+        #myContent p {
+            color: skyblue
+        }
+
+        #myContent img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+
+    </div>
+    <script id="tel" type="text/x-handlebars-template">
+        <div id="myContent">
+            <!-- 图片路径可以一样的写在“”中，一样可以加载css在上面，
+                并且运用with进入子属性后，如果想访问上级属性，可以使用../ -->
+            <p>{{title}}</p>
+            <img src="{{imgSrc}}" alt="">
+            {{#with author}}
+            <p>{{../content}}</p>
+            <p>{{author_01}}</p>
+            <p>{{author_02}}</p>
+            <p>{{author_03}}</p>
+            {{/with}}
+            
+
+            <p>{{ifval val}}</p>
+        </div>
+    </script>
+    <script>
+        let data = {
+            title: 'title one',
+            content: 'abc',
+            author: {
+                author_01: 'lyb',
+                author_02: 'llq',
+                author_03: 'lql'
+            },
+            imgSrc: 'https://developer.bundleb2b.net/assets/logo150.png'
+        }
+        //自定义helper,记住，js自上而下执行，因此必须注册在渲染之前，否则失效
+        Handlebars.registerHelper('ifval', function (val) {
+            if (val) {
+                return val;
+            } else {
+                return "不存在";
+            }
+        })
+
+        let tel = $('#tel').html()
+        let template = Handlebars.compile(tel);
+        let mydata = template(data);
+        $("#app").html(mydata)
+
+
+
+    </script>
+</body>
+
+</html>

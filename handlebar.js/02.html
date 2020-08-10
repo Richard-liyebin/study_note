@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script id="mytemp" type="text/x-handlebars-template">
+         <ul>
+             <!-- each遍历 -->
+             {{#each student}}
+             <li>{{name}}</li>
+             <li>{{age}}</li>
+             <li>{{sex}}</li>
+             {{/each}}
+         </ul>
+         <ul>
+             {{#student}}
+             <li>{{name}}</li>
+             <li>{{age}}</li>
+             <li>{{sex}}</li>
+             {{/student}}
+         </ul>
+    </script>
+    <script>
+        let tel = $('#mytemp').html();
+        let template = Handlebars.compile(tel);
+        var data = {
+            "student": [
+                {
+                    "name": "张三",
+                    "sex": "0",
+                    "age": 18
+                },
+                {
+                    "name": "李四",
+                    "sex": "0",
+                    "age": 22
+                },
+                {
+                    "name": "妞妞",
+                    "sex": "1",
+                    "age": 18
+                }
+            ]
+        };
+        // console.log($('#app'))
+        $('#app').html(template(data))
+
+    </script>
+</body>
+
+</html>

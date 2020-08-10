@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div id="app"></div>
+    <script id="tel" type="text/x-handlebars-template">
+        <div class="mydiv">
+            <!-- {{#itemList}}遍历 -->
+            <ul>
+                {{#itemList}}
+                <li>{{itemName}}</li>
+                {{/itemList}}
+            </ul>
+        </div>
+</script>
+    <script>
+        let data = {
+            itemList: [
+                { itemName: 'JS' },
+                { itemName: 'CSS' },
+                { itemName: 'HTML' }
+            ]
+        }
+        let tel = $('#tel').html()
+        //1.根据编译id，找到编译区域
+        let template = Handlebars.compile(tel)
+        //2.根据hanlebars.compile 创建编译器
+        let mydata = template(data)
+        //3.把数据放进编译器中编译，并赋值
+        $('#app').html(mydata)
+        //4.把编译后的数据，渲染在相应dom上
+
+    </script>
+</body>
+
+</html>

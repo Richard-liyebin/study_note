@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div id="app"></div>
+    <script id="tel" type="text/x-handlebars-template">
+        <div class="mydiv">
+            {{#if data}}
+            <!-- data是条件 data有值为true，无值为false -->
+            <ul>
+                {{#itemList}}
+                <li>{{this}}</li>
+                {{/itemList}}
+            </ul>
+            {{else}}
+            <p>{{error}}</p>
+            {{/if}}
+        </div>
+
+        <div class="mydiv2">
+            {{#unless data}}
+            <!-- unless是if的去反，data为true则显示error -->
+            <ul>
+                {{#itemList}}
+                <li>{{this}}</li>
+                {{/itemList}}
+            </ul>
+            {{else}}
+            <p>{{error}}</p>
+            {{/unless}}
+        </div>
+</script>
+    <script>
+        let data = {
+            itemList: ['js', 'css', 'html', 'node'],
+            data:[],
+            // data:[1,2],
+            "error": "数据取出错误"
+        }
+        //1.根据编译id，找到编译区域
+        let tel = $('#tel').html()
+        //2.根据hanlebars.compile 创建编译器
+        let template = Handlebars.compile(tel)
+        //3.把数据放进编译器中编译，并赋值
+        let mydata = template(data)
+        //4.把编译后的数据，渲染在相应dom上
+        $('#app').html(mydata)
+    </script>
+</body>
+
+</html>
