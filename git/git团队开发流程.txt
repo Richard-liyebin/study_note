@@ -1,0 +1,8 @@
+1.从远程仓库clone项目到本地
+2.在远程仓库的dev分支下，（记住是选择dev分支下）创建一个自己的分支，例如dev/richard_dev
+3.在本地仓库下，创建并切换到与远程自己的分支一样的分支下（dev/richard_dev）进行开发
+4.开发时，记得多次add,多次commit，特别是在有单独功能时，注意写备注的格式
+5.开发完毕后，在push代码之前，记得先pull dev分支下的代码，避免覆盖。
+6.pull完毕后，push代码到自己的dev/richard_dev(如果名字不一样会出错，无法提交)，push到远程仓库后，去开一个pull request,并邀请团队相关成员一起code review，并讨论，当全部成员agree to merge并且approve 时，还要看当前是不是able to merge ，是的话，设置merge base 在 dev（这里很重要，不要默认到naster了！！！！）
+然后merge。
+7.merge以后，在youtrack下记录你的ticket。
